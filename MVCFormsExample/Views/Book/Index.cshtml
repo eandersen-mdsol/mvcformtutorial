@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model IEnumerable<MVCFormsExample.Models.Book>
 
 @{
     ViewBag.Title = "Books";
@@ -7,3 +7,27 @@
 <h2>@ViewBag.Title</h2>
 
 @Html.ActionLink("Create", "Create")
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Date Published</th>
+            <th>Rating</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Name</td>
+                <td>@book.Author</td>
+                <td>@book.Published.ToShortDateString()</td>
+                <td>@book.Rating</td>
+                <td>@Html.ActionLink("Edit","Edit", new {id = book.Id})</td>
+            </tr>
+        }
+    </tbody>
+</table>
